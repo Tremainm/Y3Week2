@@ -21,4 +21,42 @@ public class week3 {
     {
         return name + " is " + age + " years old";
     }
+    @GetMapping("/calculate")
+    public String calculate(@RequestParam int num1, int num2, String operation)
+    {
+        int total = 0;
+
+        switch (operation)
+        {
+            case "add":
+                total = num1 + num2;
+            break;
+
+            case "subtract":
+                total = num1 - num2;
+                break;
+
+            case "divide":
+                if(num2 == 0)
+                {
+                    String error = "Error, cannot divide by 0";
+                    return error;
+                }
+                else
+                {
+                    total = num1/num2;
+                }
+                break;
+
+            case "multiply":
+                total = num1 * num2;
+                break;
+
+            default:
+                String Err = "Error";
+                return Err;
+
+        }
+        return "" + total;
+    }
 }
